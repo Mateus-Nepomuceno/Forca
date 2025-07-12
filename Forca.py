@@ -17,17 +17,14 @@ def montar_forca(palavra:str)->list:
     return forca
 
 def entrada()->str:
-    """montar_forca serve para retornar os espaços de uma palavra em uma lista. 
-
-    palavra: 
-        um valor string."""
+    """entrada serve para retornar um valor string validado."""
     entrada = input("Digite uma letra: ")
     while entrada == "" or not entrada.isalpha():
         entrada = input("Erro, digite uma letra: ")
     return entrada
 
 def preencher_forca(palavra:str,tentativa:str,forca:list)->int:
-    """preencher_forca serve para adicionar tentativas a lista da forca e retornar a posição da. 
+    """preencher_forca serve para adicionar tentativas a lista da forca e retornar quantas vezes a letra aparece. 
 
     palavra: 
         um valor string.
@@ -61,7 +58,6 @@ def imprimir_forca(tentativa:str,quant:int):
             print("")
     else: 
         print("A letra ({}) não está palavra.".format(tentativa))
-    
 
 palavra = pegar_palavra()
 forca = montar_forca(palavra)
@@ -70,11 +66,8 @@ print("A palavra tem",len(palavra),"letras.")
 
 while True:
     tentativa = entrada()
-    if len(tentativa) <= len(palavra):
-        if tentativa == palavra:
-            print("Parabéns, a palavra é {}!".format(tentativa))
-            break
-        quant = preencher_forca(palavra,tentativa,forca)
-        imprimir_forca(tentativa,quant)
-    else:
-        print("A palavra é menor.")
+    if tentativa == palavra:
+        print("Parabéns, a palavra é {}!".format(tentativa))
+        break
+    quant = preencher_forca(palavra,tentativa,forca)
+    imprimir_forca(tentativa,quant)
