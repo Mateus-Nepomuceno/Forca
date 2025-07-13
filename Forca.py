@@ -16,7 +16,7 @@ def montar_forca(palavra:str)->list:
     forca = ["_" for _ in palavra]
     return forca
 
-def entrada()->str:
+def validar_tentativa()->str:
     """entrada serve para retornar um valor string validado."""
     entrada = input("Digite uma letra: ")
     while entrada == "" or not entrada.isalpha():
@@ -58,6 +58,17 @@ def imprimir_forca(tentativa:str,quant:int):
             print("")
     else: 
         print("A letra ({}) não está palavra.".format(tentativa))
+    
+def verificar_tentativa(tentativa:str)->bool:
+    """verificar_tentativa serve para encerrar o código caso a tentiva seja igual a palavra.
+    
+    tentativa:
+        um valor string"""
+    if tentativa == palavra:
+        print("Parabéns, a palavra é {}!".format(tentativa))
+        return True
+    else:
+        return False
 
 palavra = pegar_palavra()
 forca = montar_forca(palavra)
@@ -65,9 +76,9 @@ forca = montar_forca(palavra)
 print("A palavra tem",len(palavra),"letras.")
 
 while True:
-    tentativa = entrada()
-    if tentativa == palavra:
-        print("Parabéns, a palavra é {}!".format(tentativa))
+    tentativa = validar_tentativa()
+    if verificar_tentativa(tentativa):
         break
-    quant = preencher_forca(palavra,tentativa,forca)
-    imprimir_forca(tentativa,quant)
+    else:
+        quant = preencher_forca(palavra,tentativa,forca)
+        imprimir_forca(tentativa,quant)
